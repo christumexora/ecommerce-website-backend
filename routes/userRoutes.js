@@ -1,6 +1,6 @@
 const express = require('express')
 const userController = require('./../controllers/userController')
-// const authController = require('./../controllers/authController')
+const authController = require('./../controllers/authController')
 const router = express.Router()
 
 //Param Middleware
@@ -14,7 +14,7 @@ router.param('id', (req, res, next, val) => {
 
 router
 .route('/')
-.get(userController.getAllUsers)
+.get(authController.protect, userController.getAllUsers)
 .post(userController.createUser)
 
 router
